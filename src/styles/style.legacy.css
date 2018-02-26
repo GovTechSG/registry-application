@@ -13,7 +13,7 @@
 @import "./typography.legacy.css";
 
 :root {
-  --font-color-override: hsl(0, 0%, 95%);
+  --font-color-override: hsl(0, 0%, 5%);
 }
 
 /* Global HTML rules */
@@ -23,11 +23,6 @@ body {
   width: 100%;
   padding: 0;
   margin: 0;
-}
-
-body {
-  background-color: rgb(38, 38, 38);
-  color: var(--font-color-override);
 }
 
 a {

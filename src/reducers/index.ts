@@ -1,3 +1,4 @@
 import counters from "./counters";
+import registry from "./registry";
 
-export default { counters };
+export default { counters, registry };

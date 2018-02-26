@@ -1,0 +1,7 @@
+.dropper:-moz-drag-over {
+  border: solid 3px var(--blue-40) !important;
+}
+
+.dropper:hover {
+  border: dashed 3px var(--blue-40) !important;
+}

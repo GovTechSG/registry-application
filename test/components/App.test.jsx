@@ -6,10 +6,10 @@ import App from "@src/components/App";
 Enzyme.configure({ adapter: new Adapter() });
 
 describe("App", () => {
-  it("is a horrible tooling ecosystem", () => {
+  it("renders", () => {
     const wrapper = shallow(<App />);
     const title = wrapper.find("h1");
     expect(title).to.have.length(1);
-    expect(title.text()).to.equal("jsapp-boilerplate");
+    expect(title.text()).to.equal("Depository");
   });
 });
