@@ -6,7 +6,6 @@ import { Contracts } from "@src/contracts";
 
 export interface VerifyProps {
   onGetAccount: () => void;
-  onRegisterUser: (from: string) => void;
   onRegisterSubject: (subject: string, account: string) => void;
   onRetrieveSubject: (subject: string) => void;
   account: string;

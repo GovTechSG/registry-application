@@ -7,10 +7,6 @@ export enum Steps {
   VERIFY = 6
 }
 
-export interface CountersState {
-  value: number;
-}
-
 export interface RegistryState {
   account: string;
   result: {
@@ -32,7 +28,6 @@ export interface RegistryState {
 }
 
 export interface State {
-  counters: CountersState;
   registry: RegistryState;
 }
 
@@ -49,16 +44,6 @@ export enum ActionTypes {
   WAIT_TX = "WAIT_TX",
   PROCESSED_TX = "PROCESSED_TX",
   RECEIVE_RECEIPT = "RECEIVE_RECEIPT"
-}
-
-export interface IncrementAction {
-  type: ActionTypes.INCREMENT;
-  value: number;
-}
-
-export interface DecrementAction {
-  type: ActionTypes.DECREMENT;
-  value: number;
 }
 
 export interface SetHashAction {
@@ -111,8 +96,6 @@ export interface ReceiveReceiptAction {
 }
 
 export type Action =
-  | IncrementAction
-  | DecrementAction
   | GetAccountAction
   | RetrieveSubjectAction
   | SetHashAction

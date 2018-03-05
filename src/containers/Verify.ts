@@ -1,17 +1,11 @@
 import { connect } from "react-redux";
 
-import {
-  getAccount,
-  registerSubject,
-  registerUser,
-  retrieveSubject
-} from "@src/actions";
+import { getAccount, registerSubject, retrieveSubject } from "@src/actions";
 import Verify from "@src/components/Pages/Verify";
 import { State } from "@src/types";
 
 const mapStateToProps = (state: State) => ({
   account: state.registry.account,
-  onRegisterUser: (from: any) => registerUser(from),
   subject: state.registry.result.subject,
   subjectOwner: state.registry.result.subjectOwner
 });

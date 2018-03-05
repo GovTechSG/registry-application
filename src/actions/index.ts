@@ -1,39 +1,22 @@
-import { Action, ActionTypes, IncrementAction } from "@src/types";
+import {
+  Action,
+  ActionTypes,
+  GetAccountAction,
+  ReceiveReceiptAction,
+  SetHashAction
+} from "@src/types";
 import { Dispatch } from "redux";
 
 import { Contracts } from "@src/contracts";
 
-export const increment = (value: number = 1) => ({
-  type: ActionTypes.INCREMENT,
-  value
-});
-
-export const decrement = (value: number = 1) => ({
-  type: ActionTypes.DECREMENT,
-  value
-});
-
-export const incrementAsync = (value: number = 1, delay: number = 1000) => (
-  dispatch: Dispatch<IncrementAction>
-) => setTimeout(() => dispatch(increment(value)), delay);
-
 // FIXME: Assuming first account
-export const getAccount = () => (dispatch: Dispatch<Action>) => {
+export const getAccount = () => (dispatch: Dispatch<GetAccountAction>) => {
   window.web3.eth.getAccounts().then(accounts => {
     dispatch({
       account: accounts[0],
       type: ActionTypes.GET_ACCOUNT
     });
   });
-};
-
-// TODO: hook up dispatch
-export const registerUser = (from: string) => {
-  Contracts.Registry.get()
-    .methods.signup()
-    .send({ value: 10, from, gas: 300000 })
-    .then(console.log)
-    .catch(console.log);
 };
 
 export const waitForTx = () => ({
@@ -55,7 +38,7 @@ export const registerSubject = (
   subject: string,
   owner: string,
   agent: string
-) => (dispatch: Dispatch<Action>) => {
+) => (dispatch: Dispatch<ReceiveReceiptAction>) => {
   Contracts.Registry.get()
     .methods.register(`0x${subject}`, owner)
     .send({ value: 10, from: agent, gas: 300000 })
@@ -94,7 +77,7 @@ export const setPreview = (objectURL: any) => ({
   url: objectURL
 });
 
-export const hashFile = (file: any) => (dispatch: Dispatch<Action>) => {
+export const hashFile = (file: any) => (dispatch: Dispatch<SetHashAction>) => {
   const reader = new FileReader();
 
   reader.addEventListener("load", async res => {

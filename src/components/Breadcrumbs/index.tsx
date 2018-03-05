@@ -44,7 +44,7 @@ const StyledBreadcrumb = styled<BreadcrumbProps, "div">("div")`
   user-select: none;
 `;
 
-class Breadcrumb extends React.Component<BreadcrumbProps, {}> {
+export class Breadcrumb extends React.Component<BreadcrumbProps, {}> {
   public static defaultProps: Partial<BreadcrumbProps> = {
     clickable: true
   };

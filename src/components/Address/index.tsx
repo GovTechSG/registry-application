@@ -32,7 +32,7 @@ export default class Address extends React.Component<
 
   public render() {
     if (!this.props.address) {
-      return <div>Unknown {this.props.address}</div>;
+      return <div>Unknown</div>;
     }
 
     function chunkString(str, size = 99999) {
