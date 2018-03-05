@@ -3,7 +3,9 @@
 const WebpackDevServer = require("webpack-dev-server");
 const webpack = require("webpack");
 const config = require("../../webpack.config.js");
+const path = require("path");
 const Nightmare = require("nightmare");
+require("nightmare-upload")(Nightmare);
 const { expect } = require("chai");
 
 let server;
@@ -52,32 +54,24 @@ describe("Functional tests", function funcTest() {
     })();
   });
 
-  it("clicks through to /counter", done => {
+  it("clicks through to Pay", done => {
     // Promises have to be wrapped in async as Babel mucks things up
     (async () => {
-      const location = await Nightmare()
+      await Nightmare()
         .goto(url)
-        .wait("a")
-        .click('a[href="/counter"]')
-        .wait(".value")
-        .evaluate(() => document.location.href);
+        .wait(".dropper")
+        .upload("#upload-file", path.resolve("test/fixtures/pic.png"))
+        .wait("button.next:enabled")
+        .click("button.next")
+        .wait("#register-owner")
+        .type("#register-owner", "did:foo:bar")
+        .wait("button.next:enabled")
+        .click("button.next")
+        .wait("h4")
+        .end()
+        .then(console.log)
+        .catch(console.error);
 
-      expect(location).to.equal(`${url}/counter`);
-      done();
-    })();
-  });
-
-  it("increments the counter (async)", done => {
-    // Promises have to be wrapped in async as Babel mucks things up
-    (async () => {
-      const location = await Nightmare()
-        .goto(`${url}/counter`)
-        .wait(".value")
-        .click("button:nth-of-type(3)")
-        .wait(1100)
-        .evaluate(() => document.querySelector(".value").textContent);
-
-      expect(location).to.equal("1");
       done();
     })();
   });

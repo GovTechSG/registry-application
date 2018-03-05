@@ -25,6 +25,7 @@ export default class Register extends React.Component<RegisterProps, {}> {
 
               <h4>Register this to</h4>
               <input
+                id="register-owner"
                 style={{ width: "100%" }}
                 type="text"
                 placeholder="did:foo:bar"

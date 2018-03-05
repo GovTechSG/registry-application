@@ -53,7 +53,7 @@ export default class Upload extends React.Component<UploadProps, {}> {
                 <div>Upload file&hellip;</div>
               </div>
               <input
-                name="myFile"
+                id="upload-file"
                 type="file"
                 ref={el => {
                   this.input = el;

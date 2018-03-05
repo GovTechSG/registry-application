@@ -74,6 +74,7 @@
     "karma-webpack": "^2.0.5",
     "mocha": "^4.0.1",
     "nightmare": "^2.10.0",
+    "nightmare-upload": "^0.1.1",
     "prettier": "^1.7.4",
     "react-addons-test-utils": "^15.6.2",
     "react-test-renderer": "^16.0.0",
