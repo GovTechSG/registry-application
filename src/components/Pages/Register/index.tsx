@@ -21,7 +21,7 @@ export default class Register extends React.Component<RegisterProps, {}> {
           right={
             <div>
               <h4>Content hash</h4>
-              <Address address={this.props.hash} />
+              <Address address={this.props.hash} lines={2} />
 
               <h4>Register this to</h4>
               <input
