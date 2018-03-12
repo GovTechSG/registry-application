@@ -39,6 +39,7 @@ const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__
 declare global {
   interface Window {
     web3: Web3;
+    gatewayUrl: string;
   }
 }
 
@@ -51,6 +52,8 @@ const provider =
   Web3.givenProvider || new Web3.providers.HttpProvider(endpoint);
 // const provider = Web3.givenProvider || new Web3.providers.WebsocketProvider(endpoint);
 window.web3 = new Web3(provider);
+
+window.gatewayUrl = url.searchParams.get("gateway") || "http://localhost:3000";
 
 const appReducer = combineReducers({
   ...reducers,

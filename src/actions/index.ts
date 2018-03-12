@@ -39,32 +39,69 @@ export const registerSubject = (
   owner: string,
   agent: string
 ) => (dispatch: Dispatch<ReceiveReceiptAction>) => {
-  Contracts.Registry.get()
-    .methods.register(`0x${subject}`, owner)
-    .send({ value: 10, from: agent, gas: 300000 })
-    .then(tx => {
-      dispatch(receiveReceipt(tx));
-      // tslint:disable-next-line:no-console
-      console.log(tx);
+  const token =
+    "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.2YjpwOJwv3SJ32kOeBqki0ee4UardV7SvPehZHW7MXw";
+
+  window
+    .fetch(`${window.gatewayUrl}/hash`, {
+      body: JSON.stringify({
+        hash: `0x${subject}`,
+        owner
+      }),
+      headers: new Headers({
+        Authorization: `Bearer ${token}`,
+        "Content-Type": "application/json"
+      }),
+      method: "POST"
     })
-    .then(() => dispatch(waitForTx()))
+    .then(res => res.json())
+    .then(res => {
+      dispatch(receiveReceipt(res.data));
+    })
     .catch(console.error);
+
+  // Directly using Web3:
+  // Contracts.Registry.get()
+  //   .methods.register(`0x${subject}`, owner)
+  //   .send({ value: 10, from: agent, gas: 300000 })
+  //   .then(tx => {
+  //     dispatch(receiveReceipt(tx));
+  //     // tslint:disable-next-line:no-console
+  //     console.log(tx);
+  //   })
+  //   .then(() => dispatch(waitForTx()))
+  //   .catch(console.error);
 };
 
 export const retrieveSubject = (subject: string) => (
   dispatch: Dispatch<Action>
 ) => {
-  Contracts.Registry.get()
-    .methods.retrieve(`0x${subject}`)
-    .call()
-    .then((result: any) => {
-      dispatch({
-        owner: result[1],
-        subject: result[2],
-        type: ActionTypes.RETRIEVE_SUBJECT
-      });
+  window
+    .fetch(`${window.gatewayUrl}/hash/0x${subject}`)
+    .then(res => res.json())
+    .then(res => {
+      if (res.data) {
+        dispatch({
+          owner: res.data.owner,
+          subject: res.data.hash,
+          type: ActionTypes.RETRIEVE_SUBJECT
+        });
+      }
     })
     .catch(console.log);
+
+  // Directly using Web3:
+  // Contracts.Registry.get()
+  //   .methods.retrieve(`0x${subject}`)
+  //   .call()
+  //   .then((result: any) => {
+  //     dispatch({
+  //       owner: result[1],
+  //       subject: result[2],
+  //       type: ActionTypes.RETRIEVE_SUBJECT
+  //     });
+  //   })
+  // .catch(console.log);
 };
 
 export const setHash = (hash: string) => ({
