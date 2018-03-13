@@ -43,10 +43,10 @@ export const registerSubject = (
     "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.2YjpwOJwv3SJ32kOeBqki0ee4UardV7SvPehZHW7MXw";
 
   window
-    .fetch(`${window.gatewayUrl}/hash`, {
+    .fetch(`${window.gatewayUrl}/v1/document`, {
       body: JSON.stringify({
         hash: `0x${subject}`,
-        owner
+        userId: owner
       }),
       headers: new Headers({
         Authorization: `Bearer ${token}`,
@@ -77,12 +77,12 @@ export const retrieveSubject = (subject: string) => (
   dispatch: Dispatch<Action>
 ) => {
   window
-    .fetch(`${window.gatewayUrl}/hash/0x${subject}`)
+    .fetch(`${window.gatewayUrl}/v1/document/0x${subject}`)
     .then(res => res.json())
     .then(res => {
       if (res.data) {
         dispatch({
-          owner: res.data.owner,
+          owner: res.data.userId,
           subject: res.data.hash,
           type: ActionTypes.RETRIEVE_SUBJECT
         });
