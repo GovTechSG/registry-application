@@ -5,7 +5,7 @@ RUN npm install -g "yarn@${YARN_VERSION}" http-server
 
 RUN apk update \
     && apk upgrade \
-    && apk add --no-cache git
+    && apk add --no-cache git make python g++
 
 WORKDIR /usr/src/app
 
