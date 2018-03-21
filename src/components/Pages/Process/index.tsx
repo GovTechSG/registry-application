@@ -2,7 +2,6 @@ import * as React from "react";
 
 import Address from "@src/components/Address";
 import Panels from "@src/components/Panels";
-import { Contracts } from "@src/contracts";
 import { keyframes } from "emotion";
 import styled from "react-emotion";
 
@@ -41,11 +40,9 @@ export default class Process extends React.Component<ProcessProps, {}> {
         left={<Spinner style={{ fontSize: "1000%" }}>⌛</Spinner>}
         right={
           <div>
-            <h4>Using Ethereum</h4>
-            <div>
-              Registering with registry contract at{" "}
-              <Address address={Contracts.Registry.address} />
-            </div>
+            <h4>
+              Registering via gateway at <code>{window.gatewayUrl}</code>&hellip;
+            </h4>
           </div>
         }
       />

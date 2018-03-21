@@ -7,15 +7,11 @@ import {
 } from "@src/types";
 import { Dispatch } from "redux";
 
-import { Contracts } from "@src/contracts";
-
 // FIXME: Assuming first account
 export const getAccount = () => (dispatch: Dispatch<GetAccountAction>) => {
-  window.web3.eth.getAccounts().then(accounts => {
-    dispatch({
-      account: accounts[0],
-      type: ActionTypes.GET_ACCOUNT
-    });
+  dispatch({
+    account: "0xf00",
+    type: ActionTypes.GET_ACCOUNT
   });
 };
 
@@ -59,18 +55,6 @@ export const registerSubject = (
       dispatch(receiveReceipt(res.data));
     })
     .catch(console.error);
-
-  // Directly using Web3:
-  // Contracts.Registry.get()
-  //   .methods.register(`0x${subject}`, owner)
-  //   .send({ value: 10, from: agent, gas: 300000 })
-  //   .then(tx => {
-  //     dispatch(receiveReceipt(tx));
-  //     // tslint:disable-next-line:no-console
-  //     console.log(tx);
-  //   })
-  //   .then(() => dispatch(waitForTx()))
-  //   .catch(console.error);
 };
 
 export const retrieveSubject = (subject: string) => (
@@ -89,19 +73,6 @@ export const retrieveSubject = (subject: string) => (
       }
     })
     .catch(console.log);
-
-  // Directly using Web3:
-  // Contracts.Registry.get()
-  //   .methods.retrieve(`0x${subject}`)
-  //   .call()
-  //   .then((result: any) => {
-  //     dispatch({
-  //       owner: result[1],
-  //       subject: result[2],
-  //       type: ActionTypes.RETRIEVE_SUBJECT
-  //     });
-  //   })
-  // .catch(console.log);
 };
 
 export const setHash = (hash: string) => ({

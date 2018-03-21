@@ -16,14 +16,12 @@ const mapStateToProps = (state: State) => ({
 
 const mapDispatchToProps = (dispatch: any) => ({
   onPayment: (hash: string, owner: string) => {
-    window.web3.eth.getAccounts().then(accounts => {
-      // tslint:disable-next-line:no-console
-      console.log(`Paid, registering using ${accounts[0]}`);
-      dispatch(registerSubject(hash, owner, accounts[0]));
-      dispatch(waitForTx());
-      // HACK: Use websocket provider to listen on Parity, ganache-cli doesn't yet support in stable
-      window.setTimeout(() => dispatch(processedTx()), 2000);
-    });
+    const account = "0xf00";
+    // tslint:disable-next-line:no-console
+    console.log(`Paid, registering using ${account}`);
+    dispatch(registerSubject(hash, owner, account));
+    dispatch(waitForTx());
+    window.setTimeout(() => dispatch(processedTx()), 10000);
   }
 });
 

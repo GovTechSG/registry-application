@@ -2,7 +2,6 @@ import * as React from "react";
 
 import Address from "@src/components/Address";
 import Panels from "@src/components/Panels";
-import { Contracts } from "@src/contracts";
 
 export interface VerifyProps {
   onGetAccount: () => void;
@@ -54,11 +53,6 @@ export default class Verify extends React.Component<VerifyProps, {}> {
         }
         right={
           <div>
-            <label>Contract address</label>
-            <Address address={Contracts.Registry.address} />
-
-            <br />
-
             <label>Content hash</label>
             <div>
               {<Address address={this.props.subject || "?"} lines={2} />}

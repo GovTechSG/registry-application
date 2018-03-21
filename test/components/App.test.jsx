@@ -10,6 +10,6 @@ describe("App", () => {
     const wrapper = shallow(<App />);
     const title = wrapper.find("h1");
     expect(title).to.have.length(1);
-    expect(title.text()).to.equal("Depository");
+    expect(title.text()).to.equal("Depository@ ");
   });
 });

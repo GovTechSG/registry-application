@@ -6,7 +6,6 @@ import * as ReactDOM from "react-dom";
 import { Provider } from "react-redux";
 import { applyMiddleware, combineReducers, compose, createStore } from "redux";
 import thunkMiddleware from "redux-thunk";
-import Web3 from "web3";
 
 import createHistory from "history/createBrowserHistory";
 import { Route, RouteProps } from "react-router-dom";
@@ -35,24 +34,9 @@ const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__
     })
   : compose;
 
-// Extend window for TypeScript
-declare global {
-  interface Window {
-    web3: Web3;
-    gatewayUrl: string;
-  }
-}
-
 // TODO: Figure out how to move this into state
 const url = new URL(window.location.href);
 const step = url.searchParams.get("step");
-const endpoint = url.searchParams.get("h") || "http://127.0.0.1:8545";
-const endpointWs = url.searchParams.get("w") || "ws://127.0.0.1:9545";
-const provider =
-  Web3.givenProvider || new Web3.providers.HttpProvider(endpoint);
-// const provider = Web3.givenProvider || new Web3.providers.WebsocketProvider(endpoint);
-window.web3 = new Web3(provider);
-
 window.gatewayUrl = url.searchParams.get("gateway") || "http://localhost:3000";
 
 const appReducer = combineReducers({

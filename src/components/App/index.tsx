@@ -42,15 +42,23 @@ export default class App extends React.Component<AppProps, {}> {
           maxWidth: "calc(var(--m) * 240)"
         }}
       >
-        <h1
-          style={{
-            fontFamily: "Georgia",
-            fontVariantCaps: "small-caps",
-            paddingTop: "var(--m-l)",
-            textAlign: "left"
-          }}
-        >
-          Depository
+        <h1>
+          <div
+            style={{
+              fontFamily: "Georgia",
+              fontVariantCaps: "small-caps",
+              paddingTop: "var(--m-l)",
+              textAlign: "left"
+            }}
+          >
+            Depository
+          </div>
+          <div
+            style={{ fontSize: "1rem", marginLeft: "2px" }}
+            title="Specify gateway with `gateway` URL paramater"
+          >
+            @ {window.gatewayUrl}
+          </div>
         </h1>
 
         <div style={{ marginBottom: "var(--m-l)" }}>
