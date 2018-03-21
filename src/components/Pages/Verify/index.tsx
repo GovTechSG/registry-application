@@ -41,7 +41,6 @@ export default class Verify extends React.Component<VerifyProps, {}> {
                 }}
               />
               <button
-                style={{ height: "100%" }}
                 onClick={() =>
                   this.props.onRetrieveSubject(this.retrieveSubjectField.value)
                 }
