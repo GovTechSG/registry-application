@@ -20,13 +20,13 @@
     "d": "webpack-dev-server --progress --colors"
   },
   "dependencies": {
-    "emotion": "^8.0.9",
+    "emotion": "^9.0.0",
     "emotion-theming": "^8.0.9",
     "history": "^4.7.2",
     "qrcode-react": "^0.1.16",
     "react": "^16.0.0",
     "react-dom": "^16.0.0",
-    "react-emotion": "^8.0.9",
+    "react-emotion": "^9.0.0",
     "react-redux": "^5.0.6",
     "react-router": "^4.2.0",
     "react-router-dom": "^4.2.2",
